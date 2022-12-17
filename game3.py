@@ -13,23 +13,22 @@ def calculate_guess_num(rmin, rmax, answer=""):
     elif answer == "too big":
         rmax = guess(rmin, rmax)            # rmax = previous guess
     elif answer == "you won":
-        return (guess(rmin, rmax), ) * 3    # rmin = rmax = previous guess
-    return rmin, rmax, guess(rmin, rmax)
+        return dict(zip(("rmin", "rmax", "guess"),
+                        (guess(rmin, rmax), ) * 3))  # rmin = rmax = previous guess
+    return dict(zip(("rmin", "rmax", "guess"),
+                    (rmin, rmax, guess(rmin, rmax))))
 
 
 @app.route("/game3", methods=["GET", "POST"])
 def game3():
     if request.method == "POST":
-        min_number, max_number, guess = calculate_guess_num(int(request.form["rmin"]),
-                                                            int(request.form["rmax"]),
-                                                            request.form["res"])
         return render_template("game3.html",
-                               rmin=min_number, rmax=max_number,
-                               guess=guess)
+                               **calculate_guess_num(int(request.form["rmin"]),
+                                                     int(request.form["rmax"]),
+                                                     request.form["res"]))
     else:
         return render_template("game3init.html",
-                               rmin=MIN_NUMBER, rmax=MAX_NUMBER,
-                               guess=calculate_guess_num(MIN_NUMBER, MAX_NUMBER))
+                               **calculate_guess_num(MIN_NUMBER, MAX_NUMBER))
 
 
 if __name__ == "__main__":
