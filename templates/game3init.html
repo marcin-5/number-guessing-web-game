@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game3 flask version</title>
+</head>
+<body>
+    <p>Imagine number between {{rmin}} and {{rmax}}!</p>
+    <form action="/game3" method="POST">
+        <input type="hidden" name="rmin" value="{{rmin}}">
+        <input type="hidden" name="rmax" value="{{rmax}}">
+        <input type="hidden" name="guess" value="{{guess}}">
+        <input type="hidden" name="res" value="0">
+        <button type="submit">
+            &nbsp;Start&nbsp;
+        </button>
+    </form>
+</body>
+</html>
