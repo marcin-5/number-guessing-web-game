@@ -13,10 +13,10 @@ def calculate_guess_num(rmin, rmax, answer=""):
     elif answer == "too big":
         rmax = guess(rmin, rmax)            # rmax = previous guess
     elif answer == "you won":
-        return dict(zip(("rmin", "rmax", "guess"),
-                        (guess(rmin, rmax), ) * 3))  # rmin = rmax = previous guess
-    return dict(zip(("rmin", "rmax", "guess"),
-                    (rmin, rmax, guess(rmin, rmax))))
+        return dict(zip(("rmin", "rmax", "guess", "res"),
+                        ((guess(rmin, rmax), ) * 3, answer)))  # rmin = rmax = previous guess
+    return dict(zip(("rmin", "rmax", "guess", "res"),
+                    (rmin, rmax, guess(rmin, rmax), "")))
 
 
 @app.route("/game3", methods=["GET", "POST"])

@@ -9,7 +9,9 @@
     <label style="display: block; margin-bottom: 12px;"> Your number is:
         <input type="text" name="guess", value="{{guess}}" readonly>
     </label>
-    {% if not rmin == rmax %}
+    {% if not res and (rmax == rmin + 1 or rmax == rmin) %}
+    <p>Do not cheat me.</p>
+    {% elif not rmin == rmax %}
     <label> Choose:
         <button type="submit" name="res" value="too small">
             &nbsp;too small&nbsp;
